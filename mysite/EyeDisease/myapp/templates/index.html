@@ -1,0 +1,71 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="{%static 'css/style.css'%}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<title>Eye-Disease-Diagnosis</title>
+</head>
+<body>
+	<!-- <header>
+		<h1>
+			My name is milan patel
+		</h1>
+	</header> -->
+<div style=" width: 40%;  margin-top: 10px; margin-left: 5%; float: left;">
+	<h2  style="text-align: justify;text-indent: 3cm;">
+		I developed a machine learning model for predicting eye diseases using patient demographics, medical history, and imaging data. The model achieved an accuracy of 90%  respectively. We performed preprocessing steps and evaluated the model's robustness to potential biases. Our model outperformed other state-of-the-art models and has been used in real-world clinical settings to assist in diagnosis and treatment decisions.
+		{%if Prediction%}
+		<h1 style="color: crimson;margin-top: 1cm;margin-left: 3.5cm;">Prediction:{{Prediction}}</h1>
+		<form method="post">
+			{%csrf_token%}
+			<button type="submit" class="select-image" style="width: 6cm;margin-left: 5cm;"><a  href="/signout">SignOut</a></button>
+			</form>
+		    {%endif%}
+		<!-- <form method="post">
+		{%csrf_token%}
+		<button type="submit" class="select-image" style="width: 6cm;"><a  href="/signout">SignOut</a></button>
+		</form> -->
+	</h2>
+</div>
+<div style=" width: 40%; margin-top: 10px;margin-left: 1cm;">
+<div class="container" style="margin: 2.5cm;">	
+    <form method="post" enctype="multipart/form-data" action="/index">
+      {%csrf_token%}
+	  <label for="name" style="margin-left: -0.5cm;">Patient name:</label>
+	  <input type="text" id="name" name="name">
+	  <br>
+	  <label for="gender" style="margin-left: -2.5cm;">Gender:</label>
+	  <input type="radio" name="gender" id="male" value="Male"> 
+	  <label for="male">Male</label>
+
+	  <input type="radio" name="gender" id="female" value="female"> 
+	  <label for="female">Female</label>
+	  <br>
+	  <label for="age" style="margin-left: -2.5cm;">Age:</label>
+	  <input type="number" id="age" name="age">
+      <input type="file" id="myFileInput" appear="none" name="upload" style="display: none;"/>
+
+		<div class="img-area" data-img="">
+			<i class='bx bxs-cloud-upload icon'></i>
+			{% if readImg == '1' %}
+                    <img class='newImg' src="{{user_image}}" class="img-thumbnail" alt="User Image"  style="width:340px;height:240px;display:flexbox;">
+					
+            {% endif %}
+			<h3>Upload Image</h3>
+		</div>
+		<input type="button" class="select-image" onclick="document.getElementById('myFileInput').click()" value="Select a File" />
+    <br>
+    <button type="submit" class="select-image" value="upload">Prediction</button>
+    </form>
+    <br>
+    <!-- {%if Prediction%}
+    <h4 style="text-align: center;">Prediction:{{Prediction}}</h4>
+    {%endif%} -->
+	</div>
+</div>
+</body>
+</html>

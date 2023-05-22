@@ -1,0 +1,46 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="{%static 'css/style.css'%}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Home Page</title>
+</head>
+<body>
+<div class="container">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  
+    </div>
+    {% endfor %}
+
+    
+
+    <h3>Welcome to Eye-Disease-Diagnosis!</h3>
+    <br>
+    {% if user.is_authenticated %}
+    <h3>Hello {{fname}}!</h3>
+    <br>
+    <h4>You're successfully logged in.</h4>
+    <br>
+    <button type="submit" class="select-image"><a href="/signout">SignOut</a></button>
+    {% else %}
+
+    <button type="submit" class="select-image"><a href="/signup">SignUp</a></button>
+    <br/>
+    <button type="submit" class="select-image"><a href="/signin">SignIn</a></button>
+    <br>
+    <button type="submit" class="select-image"><a href="/index">Guest User</a></button>
+    {% endif %}
+</div>
+    
+</body>
+</html>
