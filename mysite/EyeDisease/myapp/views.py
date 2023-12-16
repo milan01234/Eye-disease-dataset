@@ -80,4 +80,3 @@ def index(request):
         en.save()
         return render(request,"index.html",{"readImg":'1',"user_image":file_url,"Prediction":predicted_class})
     return render(request,"index.html")
-
